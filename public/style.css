@@ -39,3 +39,4 @@ canvas{image-rendering:pixelated;border:4px solid var(--line);background:#0b0820
 @media (orientation:landscape) and (pointer:coarse){#game{flex-direction:row}#hud{flex-direction:column;width:130px;flex:none}#pad{flex-direction:column;flex:none}#dpad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,48px)}#usebtn{width:72px;height:72px}}
 @media (prefers-reduced-motion:no-preference){h1{animation:blink 1.2s steps(2) 2}}
 @keyframes blink{50%{opacity:.3}}
+#xbtn{position:absolute;top:4px;right:4px;z-index:4;width:44px;min-height:44px;padding:0;text-align:center}

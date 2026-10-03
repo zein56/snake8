@@ -20,7 +20,7 @@ function cleanSettings(s = {}) {
     power: s.power ? 1 : 0, corpse: clamp(s.corpse, 0, 100, DEF.corpse), maxPlayers: clamp(s.maxPlayers, 2, 8, DEF.maxPlayers) };
 }
 const roomInfo = r => ({ id: r.id, name: r.name, lock: !!r.pw, n: r.players.length, max: r.settings.maxPlayers, playing: !!r.game, w: r.settings.w, h: r.settings.h, wrap: r.settings.wrap });
-const lobbyMsg = r => ({ t: 'lobby', id: r.id, name: r.name, owner: r.owner, settings: r.settings, players: r.players.map(p => ({ id: p.id, name: p.name, color: p.color })) });
+const lobbyMsg = r => ({ t: 'lobby', playing: !!r.game, id: r.id, name: r.name, owner: r.owner, settings: r.settings, players: r.players.map(p => ({ id: p.id, name: p.name, color: p.color })) });
 const bcast = (r, o) => r.players.forEach(p => send(p.ws, o));
 function leave(ws) {
   const r = ws.room; if (!r) return; ws.room = null;
@@ -62,6 +62,7 @@ wss.on('connection', ws => {
     } else if (m.t === 'start' && r && !r.game && r.owner === ws.pid && r.players.length >= 1) start(r);
     else if (m.t === 'dir' && r && r.game) turn(r.game, ws.pid, m.d | 0);
     else if (m.t === 'use' && r && r.game) useItem(r.game, ws.pid);
+    else if (m.t === 'quit' && r && r.game) { const s = r.game.snakes.find(s => s.id === ws.pid); if (s) { s.alive = false; s.body = []; } send(ws, lobbyMsg(r)); }
     else if (m.t === 'leave') leave(ws);
   });
   ws.on('close', () => leave(ws));

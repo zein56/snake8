@@ -30,7 +30,8 @@ Telefondan denemek için aynı Wi-Fi'da `http://BILGISAYAR_IP:3000` aç.
 ## Kontroller
 Menüler ve oyun: Klavye (oklar/WASD, Enter, Esc), kol (D-pad/stick, A onay, B geri), dokunma.
 Yetenek: WASD=Q, Oklar=Enter/Boşluk, IJKL=O, Kol=A tuşu, Mobil=YETENEK butonu.
-Güçlendiriciler: ★ altın (+boy), S kalkan, ▲ taş (yetenekle arkana bırak), ☠ kötü (-3 kare), gri nokta = ceset yemi.
+Güçlendiriciler: ★ altın, S kalkan, ☠ -3 kare, 👻 hayalet, 🧲 mıknatıs, 🔀 ters kontrol (kötü); envanter (yetenek tuşuyla): ▲ taş, 💣 bomba (12 adım sonra 5x5 alanı patlatır), ❄ dondurma (rakipleri 6 adım durdurur). Gri nokta = ceset yemi.
+Oyundan çıkış: Esc / ✕ butonu / kolda Start.
 
 ## Yapı
 - `public/core.js` ortak oyun motoru (yerel + sunucu aynı kodu çalıştırır)
